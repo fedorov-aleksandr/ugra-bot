@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  ugra-bot:
+    build: .
+    container_name: ugra-guide-bot
+    restart: unless-stopped
+    environment:
+      - TG_TOKEN=${TG_TOKEN}  # Токен берётся из .env файла или окружения
+    volumes:
+      - ./logs:/app/logs       # Для сохранения логов (если бот пишет в файл)
+      # При необходимости можно смонтировать и файлы данных, чтобы менять их без пересборки:
+      # - ./cities.json:/app/cities.json
+      # - ./history.json:/app/history.json
+      # - ./dictionary.json:/app/dictionary.json
+      # - ./eco.json:/app/eco.json
